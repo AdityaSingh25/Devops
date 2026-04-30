@@ -1,0 +1,6 @@
+bucket_name = "jatinbhalla199ewew1"
+region = "us-east-1"
+environment = "qa"
+cidr_block = "10.1.0.0/16"
+subnet_cidr_block = "10.1.1.0/24"
+ecr_name = "qa-ecr-aditya"
