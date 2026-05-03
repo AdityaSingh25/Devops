@@ -1,0 +1,6 @@
+bucket_name = "dewdwedweded"
+region = "us-east-1"
+environment = "prod"
+cidr_block = "10.2.0.0/16"
+subnet_cidr_block = "10.2.1.0/24"
+ecr_name = "prod-ecr-aditya"
