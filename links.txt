@@ -1,0 +1,33 @@
+git
+git hub platform/ git hub actions
+terraform
+docker
+Kubernetes
+
+
+aws
+
+
+git
+https://git-scm.com/install/windows
+
+GitHub account
+https://github.com/
+
+terraform
+https://developer.hashicorp.com/terraform/install
+
+docker hub login
+https://login.docker.com/
+
+install docker desktop
+https://docs.docker.com/desktop/setup/install/windows-install/
+
+
+
+install visual studio code
+https://code.visualstudio.com/docs/setup/windows
+
+
+install aws cli 
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
