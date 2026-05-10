@@ -1,0 +1,21 @@
+FROM postgres:latest
+
+RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY BackendServer.java index.html entrypoint.sh ./
+
+RUN javac BackendServer.java
+
+#Make the entrypoint script executable
+RUN chmod +x entrypoint.sh
+
+ENV POSTGRES_USER=aditya
+ENV POSTGRES_PASSWORD=password123
+ENV POSTGRES_DB=mydb
+
+
+EXPOSE 8080 5432
+
+CMD ["./entrypoint.sh"]

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>All-in-One Container</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #2c3e50;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .box {
+        background: #34495e;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+      h1 {
+        color: #1abc9c;
+      }
+      .status {
+        margin-top: 20px;
+        padding: 15px;
+        background: #2c3e50;
+        border-radius: 8px;
+        font-family: monospace;
+      }
+      button {
+        background: #1abc9c;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 1rem;
+      }
+      button:hover {
+        background: #16a085;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>All-in-One App</h1>
+      <p>Postgres + Java + HTML in ONE container</p>
+      <button onclick="checkStatus()">Check System Status</button>
+    </div>
+
+    <script>
+      async function checkStatus() {
+        const out = document.getElementById("output");
+        out.innerText = "Checking...";
+        try {
+          const res = await fetch("/api/status");
+          const data = await res.json();
+          out.innerHTML = `Message: ${data.message}<br>Status: ${data.status}<br>DB: ${data.db_host}:${data.db_port}`;
+        } catch (e) {
+          out.innerText = "Error: Backend not reachable!";
+        }
+      }
+    </script>
+  </body>
+</html>
