@@ -1,0 +1,13 @@
+# Build Stage
+# as is used to give an alias and also we can identity that is a multi container file
+FROM eclipse-temurin:17-jdk AS builder 
+WORKDIR /app
+COPY SimpleWebServer.java .
+RUN javac SimpleWebServer.java
+
+# Run Stage
+FROM eclipse-temurin:17-jre as finalImage
+WORKDIR /app
+COPY --from=builder /app/*.class .
+EXPOSE 8080
+CMD ["java", "SimpleWebServer"]
