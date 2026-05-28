@@ -1,0 +1,37 @@
+name: Build Java Jar and Publish Artifact
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Compile Java sources
+        run: |
+          javac Demo.java
+
+      - name: Create runnable JAR
+        run: |
+          jar cfm Demo.jar manifest.txt Demo.class
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-jar
+          path: Demo.jar
