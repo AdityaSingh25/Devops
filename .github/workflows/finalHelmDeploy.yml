@@ -1,0 +1,45 @@
+name: Final Helm Deploy
+
+on:
+  workflow_run:
+    workflows: ["Final DockerFilePush"]
+    types:
+      - completed
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 1. Login to AWS
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # 2. Get the Kubeconfig (Links kubectl to your EKS cluster)
+      - name: Update Kubeconfig
+        run: |
+          # IMPORTANT: Replace 'AWS_AKS_CLUSTER' with the exact name in your terraform.tfvars
+          aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name AWS_CLUSTER_THROUGH_WORKFLOW5
+
+      # 3. Install Helm
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      # 4. Run Helm Command
+      - name: Deploy Chart
+        run: |
+          # --install: Creates it if it doesn't exist
+          # --namespace: Deploys into your specific namespace
+          # --create-namespace: Ensures the namespace exists first
+          helm upgrade --install my-blue-green ./helm \
+            --namespace aws-cluster-workflow5 \
+            --create-namespace

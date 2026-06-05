@@ -1,0 +1,37 @@
+# Default values for java-web-blue-green.
+# This is a YAML-formatted file.
+
+namespace: aws-cluster-workflow5
+
+# Backend Configuration
+backend:
+  replicaCount: 1
+  image:
+    repository: adinarayan25/javakube-backend
+    tag: latest
+    pullPolicy: Always
+  service:
+    type: LoadBalancer
+    port: 8080
+
+# Frontend Configuration
+frontend:
+  blue:
+    image: adinarayan25/javakube-frontend:blue
+  green:
+    image: adinarayan25/javakube-frontend:green
+  service:
+    type: LoadBalancer
+    port: 80
+    activeVersion: blue # <--- TOGGLE THIS TO SWITCH TRAFFIC
+
+# Monitoring Configuration
+monitoring:
+  enabled: true
+  prometheus:
+    image: prom/prometheus:latest
+  grafana:
+    image: grafana/grafana:latest
+    service:
+      type: LoadBalancer
+      port: 3000

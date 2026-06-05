@@ -1,35 +1,35 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: java-web-deployment-aditya
-  labels:
-    app: java-web-aditya
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: java-web-aditya
-  template:
-    metadata:
-      labels:
-        app: java-web-aditya
-    spec:
-      containers:
-        - name: java-web-aditya
-          image: adinarayan25/javakube:v1
-          ports:
-            - containerPort: 8080
-          imagePullPolicy: IfNotPresent
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: java-web-service-aditya
-spec:
-  type: LoadBalancer
-  selector:
-    app: java-web-aditya
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: java-web-deployment-aditya
+#   labels:
+#     app: java-web-aditya
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: java-web-aditya
+#   template:
+#     metadata:
+#       labels:
+#         app: java-web-aditya
+#     spec:
+#       containers:
+#         - name: java-web-aditya
+#           image: adinarayan25/javakube:v1
+#           ports:
+#             - containerPort: 8080
+#           imagePullPolicy: IfNotPresent
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: java-web-service-aditya
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     app: java-web-aditya
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080

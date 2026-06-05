@@ -5,17 +5,17 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::025044154120:role/demo-eks-cluster1-node-group-role
+    - rolearn: arn:aws:iam::867637277744:role/AWS_AKS_CLUSTER-node-group-role
       groups:
       - system:bootstrappers
       - system:nodes
       username: system:node:{{EC2PrivateDNSName}}
   mapUsers: |
-    - userarn: arn:aws:iam::025044154120:user/jatin
-      username: jatin
+    - userarn: arn:aws:iam::867637277744:user/dinanshu
+      username: dinanshu
       groups:
       - system:masters
-    - userarn: arn:aws:iam::025044154120:root
-      username: root-admin
+    - userarn: arn:aws:iam::867637277744:user/aditya-narayan.singh@socgen.com
+      username: aditya-narayan.singh@socgen.com
       groups:
       - system:masters

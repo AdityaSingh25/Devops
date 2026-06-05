@@ -1,15 +1,15 @@
 # Cluster Name - Update this for your demo
-cluster_name = "aws_eks_team1"
+cluster_name = "AWS_CLUSTER_THROUGH_WORKFLOW5"
 
 # AWS Region
-region = "us-east-1"
+region = "eu-west-2"
 
 # Kubernetes Version
 kubernetes_version = "1.32"
 
 # VPC Configuration
 vpc_cidr           = "10.0.0.0/16"
-availability_zones = ["us-east-1a", "us-east-1b"]
+availability_zones = ["eu-west-2a", "eu-west-2b"]
 
 # Node Group Configuration
 instance_types     = ["t3.medium"]
@@ -23,7 +23,7 @@ max_capacity       = 4
 public_access_cidrs = ["0.0.0.0/0"]  # Restrict this to your IP for production
 
 # ECR Configuration
-ecr_repository_name = "demo-app"
+ecr_repository_name = "demo-app-v5"
 
 # Common Tags
 common_tags = {

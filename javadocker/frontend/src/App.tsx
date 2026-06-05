@@ -11,8 +11,10 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Replace localhost with your EKS LoadBalancer URL when deploying to production
-    fetch('http://localhost:8080/api/hello')
+    // Use environment variable for backend URL or default to localhost
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
+    
+    fetch(`${backendUrl}/api/hello`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -22,7 +24,7 @@ function App() {
       .then((data: ApiData) => setData(data))
       .catch((err) => {
         console.error('Error fetching data:', err);
-        setError('Failed to connect to Java Backend. Make sure it is running on port 8080!');
+        setError('Failed to connect to Java Backend. Make sure it is running!');
       });
   }, []);
 

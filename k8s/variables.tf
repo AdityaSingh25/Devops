@@ -1,7 +1,7 @@
 variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string
-  default     = "demo-eks-cluster1"
+  default     = "AWS_CLUSTER_THROUGH_WORKFLOW4"
 }
 
 variable "kubernetes_version" {
@@ -13,7 +13,7 @@ variable "kubernetes_version" {
 variable "region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-1"
+  default     = "eu-west-2"
 }
 
 variable "vpc_cidr" {
@@ -25,7 +25,7 @@ variable "vpc_cidr" {
 variable "availability_zones" {
   description = "List of availability zones"
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"]
+  default     = ["eu-west-2a", "eu-west-2b"]
 }
 
 variable "public_access_cidrs" {

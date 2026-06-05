@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    image: adinarayan25/javakube-backend:latest
+    platform: linux/amd64
+    ports:
+      - "8080:8080"
+
+  # Run this to build BLUE: docker compose build frontend-blue
+  frontend-blue:
+    build: 
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        - COLOR=blue
+    image: adinarayan25/javakube-frontend:blue
+    platform: linux/amd64
+    ports:
+      - "3001:80"
+
+  # Run this to build GREEN: docker compose build frontend-green
+  frontend-green:
+    build: 
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        - COLOR=green
+    image: adinarayan25/javakube-frontend:green
+    platform: linux/amd64
+    ports:
+      - "3002:80"

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-green
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      version: green
+  template: 
+    metadata:
+      labels:
+        app: frontend
+        version: green
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.frontend.green.image }}
+          ports:
+            - containerPort: {{ .Values.frontend.service.port }}
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
